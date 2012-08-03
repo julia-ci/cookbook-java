@@ -21,8 +21,13 @@
 default['java']['remove_deprecated_packages'] = false
 
 # default jdk attributes
+case platform
+when "windows"
+default['java']['install_flavor'] = "windows"
+else
 default['java']['install_flavor'] = "openjdk"
-default['java']['jdk_version'] = '6'
+end
+default['java']['jdk_version'] = '7'
 default['java']['arch'] = kernel['machine'] =~ /x86_64/ ? "x86_64" : "i586"
 
 case platform
@@ -49,6 +54,9 @@ default['java']['jdk']['6']['i586']['checksum'] = 'b551be83a690bc9fec0107d9aa4f8
 # x86_64
 default['java']['jdk']['7']['x86_64']['url'] = 'http://download.example.com/otn-pub/java/jdk/7u2-b13/jdk-7u2-linux-x64.tar.gz'
 default['java']['jdk']['7']['x86_64']['checksum'] = '411a204122c5e45876d6edae1a031b718c01e6175833740b406e8aafc37bc82d'
+
+default['java']['jdk']['7']['windows']['x86_64']['url'] = 'http://javadl.sun.com/webapps/download/AutoDL?BundleId=64153'
+default['java']['jdk']['7']['windows']['i586']['url'] = 'http://javadl.sun.com/webapps/download/AutoDL?BundleId=64153'
 
 # i586
 default['java']['jdk']['7']['i586']['url'] = 'http://download.example.com/otn-pub/java/jdk/7u2-b13/jdk-7u2-linux-i586.tar.gz'
